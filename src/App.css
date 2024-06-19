@@ -18,7 +18,7 @@ body {
   display: block;
   background-color: white;
   border-radius: 5px;
-  margin: 5%;
+  margin: 10px;
   padding: 5px;
 }
 
@@ -52,4 +52,8 @@ body {
 .due-date {
   margin-bottom: 0;
   text-align: left;
+}
+
+.new-task > form > button {
+  margin-left: 5px;
 }
