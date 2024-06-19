@@ -77,3 +77,26 @@ body {
   -ms-user-select: none; /* IE 10 and IE 11 */
   user-select: none; /* Standard syntax */
 }
+
+footer {
+  padding-top: 30px;
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+} 
+
+.tips {
+  width: 33%;
+  margin-left: 20px;
+}
+
+.tips > ul {
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.about {
+  width: 33%;
+}
+
