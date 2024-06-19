@@ -17,7 +17,7 @@ body {
 .task-card {
   display: block;
   background-color: white;
-  border-radius: 5px;
+  border-radius: 10px;
   margin: 10px;
   padding: 5px;
   overflow-y: auto;
@@ -25,6 +25,10 @@ body {
 
 .task-blocked {
   background-color: lightcoral;
+}
+
+.task-overdue {
+  border: 5px solid red;
 }
 
 .task-detail {

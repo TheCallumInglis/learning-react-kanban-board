@@ -17,7 +17,8 @@ function App() {
     { id: 5, text: 'Identify testing framework', dueDate: '2024-07-03', blocked: false, status: 'doing' },
   ]);
 
-  const [newTask, setNewTask] = useState({ id: null, text: '', dueDate: '', blocked: false, status: 'todo' });
+  const emptyNewTask = { id: null, text: '', dueDate: '', blocked: false, status: 'todo' };
+  const [newTask, setNewTask] = useState(emptyNewTask);
 
   const handleTaskChange = (event) => {
     const {
@@ -33,7 +34,14 @@ function App() {
   const addTask = (event) => {
     event.preventDefault();
 
-    // TODO Validate Form
+    if (!newTask.text || !newTask.dueDate) {
+      alert('Please enter a task and due date');
+      return;
+    }
+
+    if (newTask.status === '') {
+      setNewTask({ ...newTask, status: 'todo' });
+    }
 
     setTasks([
       ...tasks,
@@ -42,6 +50,8 @@ function App() {
         id: tasks.length + 1,
       }
     ]);
+
+    setNewTask(emptyNewTask);
   }
 
   console.log(tasks.filter(task => task.status === 'todo').map((task) => ( task.id )));
