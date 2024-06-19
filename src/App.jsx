@@ -54,7 +54,17 @@ function App() {
     setNewTask(emptyNewTask);
   }
 
-  console.log(tasks.filter(task => task.status === 'todo').map((task) => ( task.id )));
+  const toggleBlockedAction = (task) => {
+    const updatedTasks = tasks.map((t) => {
+      if (t.id === task.id) {
+        return { ...t, blocked: !t.blocked };
+      }
+
+      return t;
+    });
+
+    setTasks(updatedTasks);
+  }
 
   return (
     <>
@@ -62,7 +72,12 @@ function App() {
       <NewTask onSubmit={addTask} handleChange={handleTaskChange} taskStates={taskStates} newTask={newTask}/>
       <div className="board">
         {taskStates.map((state) => (
-          <Column key={state} status={state} tasks={tasks.filter(task => task.status === state)}/>
+          <Column 
+            key={state} 
+            status={state} 
+            tasks={tasks.filter(task => task.status === state)}
+            toggleBlockedAction={toggleBlockedAction}
+          />
         ))}
       </div>
       <Footer/>

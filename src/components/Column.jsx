@@ -1,11 +1,15 @@
 import TaskCard from './TaskCard'
 
-const Column = ({ status, tasks }) => {
+const Column = ({ status, tasks, toggleBlockedAction }) => {
     return (
         <div className="board-column">
             <h3>{status}</h3>
             {tasks.map((task) => (
-                <TaskCard task={task} key={task.id}/>
+                <TaskCard 
+                    key={task.id}
+                    task={task}
+                    toggleBlockedAction={toggleBlockedAction}
+                />
             ))}
         </div>
     );
