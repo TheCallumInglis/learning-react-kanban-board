@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import NewTask from './components/NewTask'
+import Column from './components/Column'
 import TaskCard from './components/TaskCard'
 import './App.css'
 
@@ -43,13 +44,15 @@ function App() {
     ]);
   }
 
+  console.log(tasks.filter(task => task.status === 'todo').map((task) => ( task.id )));
+
   return (
     <>
       <Header/>
       <NewTask onSubmit={addTask} handleChange={handleTaskChange} taskStates={taskStates} newTask={newTask}/>
       <div className="board">
-        {tasks.map((task) => (
-          <TaskCard task={task} key={task.id}/>
+        {taskStates.map((state) => (
+          <Column key={state} status={state} tasks={tasks.filter(task => task.status === state)}/>
         ))}
       </div>
       <Footer/>

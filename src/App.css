@@ -1,8 +1,7 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  width: 100vw;
 }
 
 body {
@@ -10,7 +9,8 @@ body {
 }
 
 .board {
-  display: grid;
+  display: flex;
+  flex-direction: row;
   margin: 0 auto;
 }
 
@@ -20,6 +20,7 @@ body {
   border-radius: 5px;
   margin: 10px;
   padding: 5px;
+  overflow-y: auto;
 }
 
 .task-blocked {
@@ -56,4 +57,8 @@ body {
 
 .new-task > form > button {
   margin-left: 5px;
+}
+
+.board-column {
+  width: 33%;
 }
