@@ -65,6 +65,11 @@ body {
 
 .board-column {
   width: 33%;
+  border: 5px solid rgb(222, 222, 222);
+}
+
+.board-column.drag-target{
+  border: 5px solid lime;
 }
 
 .prevent-select {

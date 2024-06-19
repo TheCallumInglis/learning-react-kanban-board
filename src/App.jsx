@@ -9,13 +9,14 @@ import './App.css'
 function App() {
   const [taskStates, setTaskStates] = useState(['todo', 'doing', 'done']);
 
-  const [tasks, setTasks] = useState([
+  const initialTasks = [
     { id: 1, text: 'Setup Git Repo', dueDate: '2024-06-18', blocked: false, status: 'done' },
     { id: 2, text: 'Setup Dev Environment', dueDate: '2024-07-02', blocked: false, status: 'doing' },
     { id: 3, text: 'Write Code', dueDate: '2024-07-03', blocked: false, status: 'done' },
     { id: 4, text: 'Write Tests', dueDate: '2024-07-04', blocked: true, status: 'todo' },
     { id: 5, text: 'Identify testing framework', dueDate: '2024-07-03', blocked: false, status: 'doing' },
-  ]);
+  ];
+  const [tasks, setTasks] = useState(initialTasks);
 
   const emptyNewTask = { id: null, text: '', dueDate: '', blocked: false, status: 'todo' };
   const [newTask, setNewTask] = useState(emptyNewTask);
@@ -66,6 +67,18 @@ function App() {
     setTasks(updatedTasks);
   }
 
+  const changeTaskStatus = (taskId, newStatus) => {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id === taskId) {
+        return { ...task, status: newStatus };
+      }
+
+      return task;
+    });
+
+    setTasks(updatedTasks);
+  }
+
   return (
     <>
       <Header/>
@@ -77,6 +90,7 @@ function App() {
             status={state} 
             tasks={tasks.filter(task => task.status === state)}
             toggleBlockedAction={toggleBlockedAction}
+            changeTaskStatus={changeTaskStatus}
           />
         ))}
       </div>

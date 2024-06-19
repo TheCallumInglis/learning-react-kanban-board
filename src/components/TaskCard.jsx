@@ -4,6 +4,10 @@ const TaskCard = ({ task, toggleBlockedAction }) => {
         return task.status !== 'done' && new Date(task.dueDate) <  new Date();
     };
 
+    const handleDragStart = (e, taskId) => {
+        e.dataTransfer.setData('text/plain', taskId);
+    };
+
     return (
         <>
             <div 
@@ -14,6 +18,8 @@ const TaskCard = ({ task, toggleBlockedAction }) => {
                     ${isPastDueDate(task) ? 'task-overdue' : ''}`
                 } 
                 onDoubleClick={() => toggleBlockedAction(task)}
+                onDragStart={(e) => handleDragStart(e, task.id)}
+                draggable={true}
             >
                 <div className='task-detail'>
                     <div className='task-id'>{task.id}</div>
