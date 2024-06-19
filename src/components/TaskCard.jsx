@@ -7,7 +7,12 @@ const TaskCard = ({ task, toggleBlockedAction }) => {
     return (
         <>
             <div 
-                className={`task-card ${task.blocked ? 'task-blocked' : ''} ${isPastDueDate(task) ? 'task-overdue' : ''}`} 
+                className={`
+                    task-card 
+                    prevent-select
+                    ${task.blocked ? 'task-blocked' : ''} 
+                    ${isPastDueDate(task) ? 'task-overdue' : ''}`
+                } 
                 onDoubleClick={() => toggleBlockedAction(task)}
             >
                 <div className='task-detail'>
