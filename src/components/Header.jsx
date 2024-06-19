@@ -1,7 +1,7 @@
 const Header = () => {
     return (
         <header>
-            <h1>Kanban Board</h1>
+            <h1>Kanban Board 🚀</h1>
         </header>
     );
 };

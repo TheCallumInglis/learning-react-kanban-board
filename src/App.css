@@ -83,6 +83,8 @@ footer {
   display: flex;
   flex-direction: row;
   text-align: left;
+  align-items: flex-end;
+  justify-content: flex-start;
 } 
 
 .tips {

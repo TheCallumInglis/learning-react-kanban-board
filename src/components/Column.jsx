@@ -23,6 +23,10 @@ const Column = ({ status, tasks, toggleBlockedAction, changeTaskStatus }) => {
 
         setDragTarget(null);
     };
+    
+    function ucFirst(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
 
     return (
         <div 
@@ -32,14 +36,17 @@ const Column = ({ status, tasks, toggleBlockedAction, changeTaskStatus }) => {
             onDrop={(e) => handleDrop(e, status)}
             onDragLeave={(e) => handleDragOff(e)}
         >
-            <h3>{status}</h3>
-            {tasks.map((task) => (
-                <TaskCard 
-                    key={task.id}
-                    task={task}
-                    toggleBlockedAction={toggleBlockedAction}
-                />
-            ))}
+            <h3>{ucFirst(status)}</h3>
+            {tasks.length === 0
+                ? "No tasks in this column."
+                : tasks.map((task) => (
+                    <TaskCard 
+                        key={task.id}
+                        task={task}
+                        toggleBlockedAction={toggleBlockedAction}
+                    />
+                )
+            )}
         </div>
     );
 }
