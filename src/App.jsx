@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import Header from './components/Header'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import Nav from './components/Nav'
 import Footer from './components/Footer'
 import NewTask from './components/NewTask'
 import Column from './components/Column'
@@ -81,20 +82,24 @@ function App() {
 
   return (
     <>
-      <Header/>
-      <NewTask onSubmit={addTask} handleChange={handleTaskChange} taskStates={taskStates} newTask={newTask}/>
-      <div className="board">
-        {taskStates.map((state) => (
-          <Column 
-            key={state} 
-            status={state} 
-            tasks={tasks.filter(task => task.status === state)}
-            toggleBlockedAction={toggleBlockedAction}
-            changeTaskStatus={changeTaskStatus}
-          />
-        ))}
-      </div>
-      <Footer/>
+    <Router>
+      <Nav/>
+      <main>
+        <NewTask onSubmit={addTask} handleChange={handleTaskChange} taskStates={taskStates} newTask={newTask}/>
+        <div className="board">
+          {taskStates.map((state) => (
+            <Column 
+              key={state} 
+              status={state} 
+              tasks={tasks.filter(task => task.status === state)}
+              toggleBlockedAction={toggleBlockedAction}
+              changeTaskStatus={changeTaskStatus}
+            />
+          ))}
+        </div>
+        <Footer/>
+      </main>
+    </Router>
     </>
   )
 }
