@@ -1,8 +1,6 @@
-const TaskCard = ({ task, toggleBlockedAction }) => {
+import { isPastDueDate, prettyDate } from '../utils';
 
-    const isPastDueDate = (task) => {
-        return task.status !== 'done' && new Date(task.dueDate) <  new Date();
-    };
+const TaskCard = ({ task, toggleBlockedAction }) => {
 
     const handleDragStart = (e, taskId) => {
         e.dataTransfer.setData('text/plain', taskId);
@@ -31,7 +29,7 @@ const TaskCard = ({ task, toggleBlockedAction }) => {
                 <br/>
 
                 <div className="task-detail">
-                    <p className="due-date">Due: {task.dueDate}</p>
+                    <p className="due-date">Due: {prettyDate(task.dueDate)}</p>
                 </div>
             </div>
         </>

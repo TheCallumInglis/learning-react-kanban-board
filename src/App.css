@@ -28,7 +28,7 @@ body {
   background-color: #e74c3c;
 }
 
-.task-overdue {
+.task-card.task-overdue {
   border: 5px solid #e74c3c;
 }
 
@@ -181,6 +181,18 @@ td.col-task-id {
   width: 5%;
 }
 
+td.col-task-blocked {
+  width: 10%;
+  text-align: center;
+  padding-right: 20px;
+}
+
+td.col-task-blocked .icon {
+  color: red;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 td.col-task-status {
   width: 10%;
 }
@@ -189,8 +201,12 @@ td.col-task-date {
   width: 20%;
 }
 
+td.task-overdue {
+  color: red;
+}
+
 td.col-task-title {
-  width: 60%;
+  width: 50%;
 }
 
 td.col-task-actions {

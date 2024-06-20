@@ -9,3 +9,7 @@ export const prettyDate = (date) => {
         year: 'numeric',
     });
 }
+
+export const isPastDueDate = (task) => {
+    return task.status !== 'done' && new Date(task.dueDate) <  new Date();
+};

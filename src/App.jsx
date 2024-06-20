@@ -14,7 +14,7 @@ function App() {
 
   const initialTasks = [
     { id: 1, text: 'Setup Git Repo', dueDate: '2024-06-18', blocked: false, status: 'done' },
-    { id: 2, text: 'Setup Dev Environment', dueDate: '2024-07-02', blocked: false, status: 'doing' },
+    { id: 2, text: 'Setup Dev Environment', dueDate: '2024-06-20', blocked: false, status: 'doing' },
     { id: 3, text: 'Write Code', dueDate: '2024-07-03', blocked: false, status: 'done' },
     { id: 4, text: 'Write Tests', dueDate: '2024-07-04', blocked: true, status: 'todo' },
     { id: 5, text: 'Identify testing framework', dueDate: '2024-07-03', blocked: false, status: 'doing' },
