@@ -1,14 +1,19 @@
+import { useEffect } from 'react';
 import NewTask from '../components/NewTask';
 
-const NewTaskPage = ({ addTaskHandler, taskChangeHandler, taskStates, newTask }) => {
+const NewTaskPage = ({ addTaskHandler, taskStates }) => {
+    useEffect(() => {
+        document.title = 'New Task';
+        document.getElementById('text').focus();
+    }, []);
+
     return (    
         <>
             <h1>Create New Task</h1>
             <NewTask 
-                onSubmit={addTaskHandler} 
-                handleChange={taskChangeHandler} 
+                addTaskHandler={addTaskHandler} 
                 taskStates={taskStates} 
-                newTask={newTask}/>
+            />
         </>
     );
 };

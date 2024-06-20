@@ -22,14 +22,16 @@ body {
   margin: 10px;
   padding: 5px;
   overflow-y: auto;
+  border: 5px solid #1abc9c;
 }
 
 .task-blocked {
   background-color: #e74c3c;
+  border-color: #e74c3c;
 }
 
 .task-card.task-overdue {
-  border: 5px solid #e74c3c;
+  border-color: #e67e22;
 }
 
 .task-detail {
@@ -60,8 +62,69 @@ body {
   text-align: left;
 }
 
-.new-task > form > button {
-  margin-left: 5px;
+.new-task {
+  width: 25%;
+  margin: 0 auto;
+  background-color: #34495e;
+  padding: 20px;
+  border: 5px solid #2c3e50;
+  border-radius: 20px;
+}
+
+.new-task form div {
+  text-align: left;
+  background-color: #34495e;
+}
+
+.new-task form div label {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  grid-gap: 10px;
+  margin-top: 10px;
+}
+
+.new-task form div label .form-label {
+  margin-bottom: 5px;
+  font-size: 1.25rem;
+  margin: 0 20px
+}
+
+.new-task form div .form-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px;
+  margin: 20px 0 10px 20px;
+  text-align: center;
+}
+
+.new-task form div .form-actions button {
+  padding: 5px;
+  border-radius: 10px;
+  color: white;
+  font-size: 1.2rem;
+  border: none;
+}
+
+.new-task form div .form-actions button:hover {
+  cursor: pointer;
+}
+
+.new-task form div .form-actions button.cancel {
+  background-color: #e74c3c;
+  border: 5px solid #e74c3c;
+}
+
+.new-task form div .form-actions button.cancel:hover {
+  border: 5px solid #c0392b;
+}
+
+.new-task form div .form-actions button.create {
+  background-color: #2ecc71;
+  border: 5px solid #2ecc71;
+}
+
+.new-task form div .form-actions button.create:hover {
+  border: 5px solid #27ae60;
 }
 
 .board-column {
@@ -119,14 +182,14 @@ nav {
   background-color: #34495e;
 }
 
-nav > h2 {
+nav > a > h2 {
   color: white;
   margin-bottom: 0;
   text-align: center;
   padding-left: 5px;
 }
 
-nav > h2 > .icon {
+nav > a > h2 > .icon {
   float: left;
   padding-left: 10px;
 }
@@ -194,7 +257,7 @@ td.col-task-blocked {
 }
 
 td.col-task-blocked .icon {
-  color: red;
+  color: #c0392b;
   margin-left: auto;
   margin-right: auto;
 }
@@ -208,7 +271,7 @@ td.col-task-date {
 }
 
 td.task-overdue {
-  color: red;
+  color: #c0392b;
 }
 
 td.col-task-title {
@@ -226,4 +289,79 @@ a {
 
 a:hover {
   color: #27ae60;
+}
+
+.task-link {
+  text-align: center!important;
+}
+
+.task-link a .icon {
+  margin-right: 5px;
+}
+
+.status-msg {
+  text-align: center!important;
+}
+
+.status-msg.error {
+  color: #c0392b;
+}
+
+.status-msg.success {
+  color: #27ae60;
+}
+
+table.tbl-task-detail {
+  width: 30%;
+  margin: 0 auto;
+}
+
+table.tbl-task-detail td {
+  padding: 5px;
+}
+
+table.tbl-task-detail td:nth-child(2) {
+  text-align: left;
+}
+
+.tips > table {
+  width: 100%;
+}
+
+.tips > table > tr {
+  display: grid;
+  grid-template-columns: 0.25fr 1fr;
+}
+
+.tips > table > tr > td {
+  padding: 2px 0;
+  line-height: 16px;
+}
+
+.tips > table > tr > td > div.colour-box {
+  border-radius: 5px;
+  padding: 5px;
+  border-width: 3px;
+  border-style: solid;
+  border-color: transparent;
+}
+
+.green {
+  background-color: #1abc9c;
+}
+
+.red {
+  background-color: #c0392b;
+}
+
+.orange-border {
+  border-color: #e67e22!important;
+}
+
+.tips > table > tr > td:nth-child(2) {
+  margin-left: 10px;
+  padding: 5px;
+  border-width: 3px;
+  border-style: solid;
+  border-color: transparent;
 }

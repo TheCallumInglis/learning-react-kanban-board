@@ -1,6 +1,11 @@
+import { useEffect } from 'react';
 import Column from '../components/Column';
 
 const KanbanPage = ({ taskStates, tasks, toggleBlockedAction, changeTaskStatus }) => {
+    useEffect(() => {
+        document.title = 'Kanban Board';
+    }, []);
+
     return (    
         <>
             <h1>Kanban Board</h1>

@@ -1,10 +1,22 @@
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { isPastDueDate, prettyDate } from '../utils';
 
 const TaskCard = ({ task, toggleBlockedAction }) => {
+    const navigate = useNavigate();
 
     const handleDragStart = (e, taskId) => {
         e.dataTransfer.setData('text/plain', taskId);
     };
+
+    const showTaskDetail = (e, task) => {
+        navigate(`/tasks/${task.id}`);
+    }
+
+    const onContextMenu = (e, task) => {
+        e.preventDefault();
+        toggleBlockedAction(task);
+    }
 
     return (
         <>
@@ -15,8 +27,9 @@ const TaskCard = ({ task, toggleBlockedAction }) => {
                     ${task.blocked ? 'task-blocked' : ''} 
                     ${isPastDueDate(task) ? 'task-overdue' : ''}`
                 } 
-                onDoubleClick={() => toggleBlockedAction(task)}
                 onDragStart={(e) => handleDragStart(e, task.id)}
+                onClick={(e) => showTaskDetail(e, task)}
+                onContextMenu={(e) => onContextMenu(e, task)}
                 draggable={true}
             >
                 <div className='task-detail'>

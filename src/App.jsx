@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import AboutPage from './pages/AboutPage'
 import KanbanPage from './pages/KanbanPage'
+import TaskDetailPage from './pages/TaskDetailPage'
 import NewTaskPage from './pages/NewTaskPage'
 import TasksPage from './pages/TasksPage'
 import Nav from './components/Nav'
@@ -21,41 +22,18 @@ function App() {
   ];
   const [tasks, setTasks] = useState(initialTasks);
 
-  const emptyNewTask = { id: null, text: '', dueDate: '', blocked: false, status: 'todo' };
-  const [newTask, setNewTask] = useState(emptyNewTask);
-
-  const handleTaskChange = (event) => {
-    const {
-      target: { name, value }
-    } = event;
-
-    setNewTask({ 
-      ...newTask, 
-      [name]: value,
-    });
-  }
-
-  const addTask = (event) => {
-    event.preventDefault();
-
-    if (!newTask.text || !newTask.dueDate) {
-      alert('Please enter a task and due date');
-      return;
-    }
-
-    if (newTask.status === '') {
-      setNewTask({ ...newTask, status: 'todo' });
-    }
+  const addTask = ({ _newTask }) => {
+    const newTaskId = tasks.length + 1;
 
     setTasks([
       ...tasks,
       {
-        ...newTask,
-        id: tasks.length + 1,
+        ..._newTask,
+        id: newTaskId,
       }
     ]);
 
-    setNewTask(emptyNewTask);
+    return newTaskId;
   }
 
   const toggleBlockedAction = (task) => {
@@ -101,6 +79,15 @@ function App() {
           />
 
           <Route 
+            path="/tasks/:taskId" 
+            element={
+              <TaskDetailPage 
+                tasks={tasks}
+              />
+            } 
+          />
+
+          <Route 
             path="/tasks" 
             element={
               <TasksPage 
@@ -115,9 +102,7 @@ function App() {
             element={
               <NewTaskPage 
                 addTaskHandler={addTask} 
-                taskChangeHandler={handleTaskChange} 
                 taskStates={taskStates} 
-                newTask={newTask} 
               />
             } 
           />

@@ -33,7 +33,7 @@ const Column = ({ status, tasks, toggleBlockedAction, changeTaskStatus }) => {
             onDrop={(e) => handleDrop(e, status)}
             onDragLeave={(e) => handleDragOff(e)}
         >
-            <h3>{ucFirst(status)}</h3>
+            <h3>{ucFirst(status)} ({tasks.length})</h3>
             {tasks.length === 0
                 ? "No tasks in this column."
                 : tasks.map((task) => (

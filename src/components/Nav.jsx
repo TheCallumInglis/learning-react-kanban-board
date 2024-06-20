@@ -4,7 +4,9 @@ import { FaChartBar, FaPlus, FaTasks, FaInfo } from 'react-icons/fa';
 const Nav = () => {
     return (
         <nav>
-            <h2><span className="icon">🚀</span> Kanban Board</h2>
+            <Link to="/">
+                <h2><span className="icon">🚀</span> Kanban Board</h2>
+            </Link>
             <ul>
                 <Link to="/">
                     <li>
