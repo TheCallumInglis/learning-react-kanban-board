@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import TaskCard from './TaskCard'
+import { ucFirst } from '../utils';
 
 const Column = ({ status, tasks, toggleBlockedAction, changeTaskStatus }) => {
 
@@ -23,10 +24,6 @@ const Column = ({ status, tasks, toggleBlockedAction, changeTaskStatus }) => {
 
         setDragTarget(null);
     };
-    
-    function ucFirst(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
 
     return (
         <div 

@@ -1,7 +1,6 @@
 const NewTask = ({ onSubmit, handleChange, taskStates, newTask }) => {
     return (
         <div className="new-task">
-            <h2>New Task</h2>
             <form onSubmit={onSubmit}>
                 <label htmlFor="text">Task: 
                     <input type="text" name="text" id="text" placeholder="My New Task" value={newTask.text} onChange={handleChange} required/>

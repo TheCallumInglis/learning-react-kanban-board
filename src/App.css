@@ -70,7 +70,7 @@ body {
 }
 
 .board-column.drag-target{
-  border: 5px solid lime;
+  border: 5px solid #1abc9c;
 }
 
 .prevent-select {
@@ -149,9 +149,59 @@ nav > ul > a:hover, nav > ul > a > li:hover {
   border-bottom: 1px solid #2ecc71;
 }
 
+nav > ul > a > li > .icon {
+  float: left;
+  padding-right: 10px;
+  color: #2ecc71;
+}
+
 main {
-  width: 85%;
+  width: 90%;
   float: right;
   overflow-y: scroll;
   height: 100%;
+}
+
+table.tasks {
+  width: 50%;
+  border-collapse: collapse;
+  text-align: left;
+  margin: 20px auto;
+}
+table.tasks thead {
+  font-size: 1.1rem;
+}
+
+table.tasks tbody tr {
+  margin-bottom: 5px;
+  line-height: 2rem;
+}
+
+td.col-task-id {
+  width: 5%;
+}
+
+td.col-task-status {
+  width: 10%;
+}
+
+td.col-task-date {
+  width: 20%;
+}
+
+td.col-task-title {
+  width: 60%;
+}
+
+td.col-task-actions {
+  width: 5%;
+}
+
+a {
+  color: #2ecc71;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #27ae60;
 }
