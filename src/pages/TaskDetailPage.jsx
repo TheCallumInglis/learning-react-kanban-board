@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import TaskDetail from '../components/TaskDetail';
+import NewTask from '../components/NewTask';
 
-const TaskDetailPage = ({ tasks }) => {
+const TaskDetailPage = ({ updateTaskHandler, tasks, taskStates }) => {
     const { taskId } = useParams();
 
     const selectedTask = tasks.find(
@@ -14,13 +14,29 @@ const TaskDetailPage = ({ tasks }) => {
     }, []);
 
     useEffect(() => {
-        document.title = `Task #${selectedTask.id}`;
+        if (selectedTask) {
+            document.title = `Task #${selectedTask.id}`;
+        }
     }, [selectedTask]);
 
     return (
         <>
-            <h1>Task Detail</h1>
-            <TaskDetail task={selectedTask} />
+            <h1>Task Detail {selectedTask && (<span>#{selectedTask.id}</span>)}</h1>
+            {selectedTask 
+                ? (
+                    <>
+                        {/* <TaskDetail task={selectedTask} /> */}
+                        <NewTask 
+                            formSubmitHandler={updateTaskHandler} 
+                            formSubmitBtnText="Update Task"
+                            taskStates={taskStates} 
+                            task={selectedTask}
+                        />
+                    </>
+                ) 
+                : <p>Task not found.</p>
+            }
+            
         </>
     );
 }

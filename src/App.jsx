@@ -22,18 +22,34 @@ function App() {
   ];
   const [tasks, setTasks] = useState(initialTasks);
 
-  const addTask = ({ _newTask }) => {
+  const addTask = ({ _task }) => {
     const newTaskId = tasks.length + 1;
 
     setTasks([
       ...tasks,
       {
-        ..._newTask,
+        ..._task,
         id: newTaskId,
       }
     ]);
 
     return newTaskId;
+  }
+
+  const updateTask = ({ _task }) => {
+    if (!tasks.find((task) => task.id === _task.id)) {
+      return false;
+    }
+
+    setTasks(tasks.map((task) => {
+      if (task.id === _task.id) {
+        return _task;
+      }
+
+      return task;
+    }));
+
+    return _task.id;
   }
 
   const toggleBlockedAction = (task) => {
@@ -82,7 +98,9 @@ function App() {
             path="/tasks/:taskId" 
             element={
               <TaskDetailPage 
+                updateTaskHandler={updateTask} 
                 tasks={tasks}
+                taskStates={taskStates}
               />
             } 
           />

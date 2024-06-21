@@ -12,18 +12,20 @@ const Footer = () => {
             <div className="tips">
                 <b>Colours</b>
                 <table>
-                    <tr>
-                        <td><div className="colour-box green">Green Fill</div></td>
-                        <td>On Track</td>
-                    </tr>
-                    <tr>
-                        <td><div className="colour-box red">Red Fill</div></td>
-                        <td>Blocked</td>
-                    </tr>
-                    <tr>
-                        <td><div className="colour-box orange-border">Orange Border</div></td>
-                        <td>Late/Overdue</td>
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <td><div className="colour-box green">Green Fill</div></td>
+                            <td>On Track</td>
+                        </tr>
+                        <tr>
+                            <td><div className="colour-box red">Red Fill</div></td>
+                            <td>Blocked</td>
+                        </tr>
+                        <tr>
+                            <td><div className="colour-box orange-border">Orange Border</div></td>
+                            <td>Late/Overdue</td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
             <div className="about">

@@ -1,8 +1,9 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaExternalLinkAlt } from 'react-icons/fa';
 
-const NewTask = ({ addTaskHandler, taskStates }) => {
+const NewTask = ({ formSubmitHandler, formSubmitBtnText, taskStates, task }) => {
+    const navigate = useNavigate();
 
     const emptyStatusMsg = { statusMsg: '', isError: false };
     const [{statusMsg, isError}, setStatusMsg] = useState(emptyStatusMsg);
@@ -12,10 +13,22 @@ const NewTask = ({ addTaskHandler, taskStates }) => {
 
     const [createdTaskId, setCreatedTaskId] = useState(null);
 
+    useEffect(() => {
+        if (task) {
+            setNewTask(task);
+        }
+    }, []);
+
     const handleTaskChange = (event) => {
         const {
           target: { name, value }
         } = event;
+
+        // Special sauce for blocked field
+        if (name === 'blocked') {
+            setNewTask({ ...newTask, blocked: !newTask.blocked });
+            return;
+        }
     
         setNewTask({ 
           ...newTask, 
@@ -24,8 +37,12 @@ const NewTask = ({ addTaskHandler, taskStates }) => {
     }
 
     const cancelFormhandler = () => {
-        setNewTask(emptyNewTask); // Reset Form
-        setStatusMsg(emptyStatusMsg); // Reset Status Message
+        if (task) { // Handle Cancel for Edit Task
+            navigate(`/`);
+        } else {
+            setNewTask(emptyNewTask); // Reset Form
+            setStatusMsg(emptyStatusMsg); // Reset Status Message
+        }
     }
 
     const onSubmit = (event) => {
@@ -40,15 +57,33 @@ const NewTask = ({ addTaskHandler, taskStates }) => {
             setNewTask({ ...newTask, status: 'todo' });
         }
 
-        const newTaskId = addTaskHandler({ _newTask: newTask }); // Create Task
-        setCreatedTaskId(newTaskId);
-        setStatusMsg({statusMsg: `Task #${newTaskId} added successfully!`, isError: false});
-        setNewTask(emptyNewTask); // Reset Form
+        // Save Task
+        const newTaskId = formSubmitHandler({ _task: newTask });
+        if (!newTaskId) {
+            setCreatedTaskId(null);
+            setStatusMsg({statusMsg: `Task not found.`, isError: true});
+
+        } else if (newTask.id) { // Update Existing Task
+            setCreatedTaskId(newTask.id);
+            setStatusMsg({statusMsg: `Task #${newTask.id} updated successfully!`, isError: false});
+            
+        } else { // Creating New Task
+            setCreatedTaskId(newTaskId);
+            setStatusMsg({statusMsg: `Task #${newTaskId} added successfully!`, isError: false});
+        }
     }
 
     return (
         <div className="new-task">
             <form onSubmit={onSubmit}>
+                {newTask.id && (
+                <div>
+                    <label htmlFor="id"><span className="form-label">Task # </span>
+                        <input type="text" name="id" id="id" placeholder="Task ID" value={newTask.id} onChange={handleTaskChange} readOnly={true}/>
+                    </label>
+                </div>
+                )}
+
                 <div>
                     <label htmlFor="text"><span className="form-label">Task </span>
                         <input type="text" name="text" id="text" placeholder="My New Task" value={newTask.text} onChange={handleTaskChange}/>
@@ -72,9 +107,17 @@ const NewTask = ({ addTaskHandler, taskStates }) => {
                 </div>
 
                 <div>
+                    <label htmlFor="blocked"><span className="form-label">Blocked </span>
+                        <div>
+                            <input type="checkbox" name="blocked" id="blocked" checked={newTask.blocked} onChange={handleTaskChange}/>
+                        </div>
+                    </label>
+                </div>
+
+                <div>
                     <div className="form-actions">
                         <button type="button" className="cancel" onClick={cancelFormhandler}>Cancel</button>
-                        <button type="submit" className="create">Add Task</button>
+                        <button type="submit" className="create">{formSubmitBtnText}</button>
                     </div>
 
                     {createdTaskId &&

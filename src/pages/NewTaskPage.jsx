@@ -11,7 +11,8 @@ const NewTaskPage = ({ addTaskHandler, taskStates }) => {
         <>
             <h1>Create New Task</h1>
             <NewTask 
-                addTaskHandler={addTaskHandler} 
+                formSubmitHandler={addTaskHandler} 
+                formSubmitBtnText="Add Task"
                 taskStates={taskStates} 
             />
         </>
