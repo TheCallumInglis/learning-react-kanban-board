@@ -64,8 +64,11 @@ const NewTask = ({ formSubmitHandler, formSubmitBtnText, taskStates, task }) => 
             setStatusMsg({statusMsg: `Task not found.`, isError: true});
 
         } else if (newTask.id) { // Update Existing Task
-            setCreatedTaskId(newTask.id);
-            setStatusMsg({statusMsg: `Task #${newTask.id} updated successfully!`, isError: false});
+            setStatusMsg({statusMsg: `Task #${newTask.id} updated successfully! Taking you home...`, isError: false});
+
+            setTimeout(() => {
+                navigate('/');
+            }, 500);
             
         } else { // Creating New Task
             setCreatedTaskId(newTaskId);
